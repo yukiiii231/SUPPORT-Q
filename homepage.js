@@ -1,69 +1,66 @@
+
 const loginBtn = document.getElementById("loginBtn");
 const mainModal = document.getElementById("loginModal");
 
 loginBtn.onclick = () => mainModal.style.display = "flex";
 
-
-
-/* --- 1. CONFIGURATION --- */
+/* MSAL CONFIG */
 const msalConfig = {
     auth: {
-        clientId: "8301da4c-08bd-4aed-bcce-67a766ba3367", 
+        clientId: "8301da4c-08bd-4aed-bcce-67a766ba3367",
         authority: "https://login.microsoftonline.com/common",
-        redirectUri: "https://yukiiii321.github.io/SUPPORT-Q/homepage.html" 
+        redirectUri: "https://yukiiii231.github.io/SUPPORT-Q/homepage.html"
     }
 };
 
 const msalInstance = new msal.PublicClientApplication(msalConfig);
-let isMsalReady = false;
 
-msalInstance.initialize().then(() => {
-    isMsalReady = true;
-}).catch(err => console.error("MSAL Init Error:", err));
 
-/* --- 2. AUTHENTICATION FUNCTIONS --- */
+/* HANDLE REDIRECT AFTER MICROSOFT LOGIN */
+msalInstance.handleRedirectPromise().then(() => {
 
-async function loginStudent() {
-    try {
-        // We use loginPopup, but we tell the popup to NOT stay open
-        const response = await msalInstance.loginPopup({ 
-            scopes: ["user.read"],
-            prompt: "select_account" 
-        });
+    const account = msalInstance.getAllAccounts()[0];
+    const role = sessionStorage.getItem("loginRole");
 
-        // This code only runs AFTER the popup closes successfully
-        const email = response.account.username.toLowerCase();
+    if (!account) return;
 
-        if (email.endsWith("@fairview.sti.edu.ph")) {
-            sessionStorage.setItem("userRole", "student");
-            // This line moves the MAIN window, not the popup
-            window.location.href = "student_dashboard.html"; 
-        } else {
-            alert("Please use your STI email.");
-        }
-    } catch (err) {
-        console.log("Login failed or popup blocked", err);
+    const email = account.username.toLowerCase();
+
+    if (role === "student" && email.endsWith("@fairview.sti.edu.ph")) {
+        window.location.href = "student_dashboard.html";
     }
+
+    if (role === "admin" && email.endsWith("@fairview.sti.edu.ph")) {
+        window.location.href = "admin_dashboard.html";
+    }
+
+}).catch(err => console.log(err));
+
+
+/* STUDENT LOGIN */
+function loginStudent(){
+
+    sessionStorage.setItem("loginRole","student");
+
+    msalInstance.loginRedirect({
+        scopes:["user.read"]
+    });
+
 }
 
-/* --- UPDATED ADMIN LOGIN --- */
-async function loginAdmin() {
-    try {
-        const response = await msalInstance.loginPopup({ scopes: ["user.read"] });
-        const email = response.account.username.toLowerCase();
 
-        if (email.endsWith("@fairview.sti.edu.ph")) {
-            sessionStorage.setItem("userRole", "admin");
-            // Move the MAIN window to admin dashboard
-            window.location.href = "admin_dashboard.html"; 
-        }
-    } catch (err) {
-        console.log("Login failed", err);
-    }
+/* ADMIN LOGIN */
+function loginAdmin(){
+
+    sessionStorage.setItem("loginRole","admin");
+
+    msalInstance.loginRedirect({
+        scopes:["user.read"]
+    });
+
 }
+
 
 function closeAll(){
     document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
 }
-
-
