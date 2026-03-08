@@ -10,7 +10,7 @@ const msalConfig = {
     auth: {
         clientId: "8301da4c-08bd-4aed-bcce-67a766ba3367", 
         authority: "https://login.microsoftonline.com/common",
-        redirectUri: "https://yukiiii321.github.io/your-repository-name/homepage.html" 
+        redirectUri: "https://yukiiii321.github.io/SUPPORT-Q/homepage.html" 
     }
 };
 
