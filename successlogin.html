@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authenticating...</title>
+    <script src="https://alcdn.msauth.net/browser/2.35.0/js/msal-browser.min.js"></script>
+    <script>
+        const msalInstance = new msal.PublicClientApplication({
+            auth: { clientId: "YOUR_CLIENT_ID", authority: "https://login.microsoftonline.com/common" }
+        });
+        msalInstance.initialize().then(() => {
+            // This will signal the main window that login is done and close the popup
+            msalInstance.handleRedirectPromise();
+        });
+    </script>
+</head>
+<body></body>
+</html>
