@@ -1,4 +1,3 @@
-
 const loginBtn = document.getElementById("loginBtn");
 const mainModal = document.getElementById("loginModal");
 
@@ -16,25 +15,36 @@ const msalConfig = {
 const msalInstance = new msal.PublicClientApplication(msalConfig);
 
 
-/* HANDLE REDIRECT AFTER MICROSOFT LOGIN */
-msalInstance.handleRedirectPromise().then(() => {
+/* HANDLE REDIRECT LOGIN */
+msalInstance.handleRedirectPromise().then(response => {
 
-    const account = msalInstance.getAllAccounts()[0];
-    const role = sessionStorage.getItem("loginRole");
+    let account = null;
+
+    if (response !== null) {
+        account = response.account;
+    } else {
+        const accounts = msalInstance.getAllAccounts();
+        if (accounts.length > 0) {
+            account = accounts[0];
+        }
+    }
 
     if (!account) return;
 
+    const role = sessionStorage.getItem("loginRole");
     const email = account.username.toLowerCase();
 
     if (role === "student" && email.endsWith("@fairview.sti.edu.ph")) {
-        window.location.href = "student_dashboard.html";
+        window.location.replace("student_dashboard.html");
+        return;
     }
 
     if (role === "admin" && email.endsWith("@fairview.sti.edu.ph")) {
-        window.location.href = "admin_dashboard.html";
+        window.location.replace("admin_dashboard.html");
+        return;
     }
 
-}).catch(err => console.log(err));
+}).catch(err => console.error(err));
 
 
 /* STUDENT LOGIN */
