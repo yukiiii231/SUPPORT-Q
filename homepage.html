@@ -12,8 +12,8 @@
 
 <nav class="navbar">
     <div class="logo">
-        <img src="zennestlogo.png"width="50px" height="50px" alt="Logo">
-        <h1 class="logo-text">Support - Q </h1>
+        <img src="zennestlogo.png" width="50" height="50" alt="Logo">
+        <h1 class="logo-text">Support - Q</h1>
     </div>
     <button id="loginBtn" class="login-btn">Log in</button>
 </nav>
@@ -31,53 +31,27 @@
 
 <section class="about">
     <h2>ABOUT US</h2>
-    <p>A mental health assessment system that helps students check how they are feeling and
-       if they have problems like stress, anxiety, or depression.   It gives results and suggestions
-       for help, like talking to a counselor. 
-</p>
+    <p>
+        A mental health assessment system that helps students check how they are feeling and
+        if they have problems like stress, anxiety, or depression. It gives results and suggestions
+        for help, like talking to a counselor.
+    </p>
 </section>
 
-<section class ="contact">
+<section class="contact">
     <h2>CONTACT US!</h2>
-    <p class = "number"> 09914314312 </p>
-    <p class = "email"> Email: zennestcompany@gmail.com</p>
-    <p class = "facebook"> ZenNest </p>
+    <p class="number">09914314312</p>
+    <p class="email">Email: zennestcompany@gmail.com</p>
+    <p class="facebook">ZenNest</p>
 </section>
 
 <div id="loginModal" class="modal">
     <div class="modal-box">
         <button class="close-btn" onclick="closeAll()">✖</button>
         <h3>Select Login Type</h3>
-        
         <button class="student-btn" onclick="loginStudent()">Student Log in</button>
-        
         <button class="admin-btn" onclick="loginAdmin()">Admin Log in</button>
     </div>
-</div>
-
-
-<div id="studentSignup" class="modal">
-  <div class="modal-box">
-    <button class="close-btn" onclick="closeAll()">✖</button>
-    <h3>Student Sign Up</h3>
-    <input type="text" id="sName" placeholder="Full Name"><br><br>
-    <input type="text" id="sGrade" placeholder="Grade & Section"><br><br>
-    <input type="text" id="sStrand" placeholder="Strand"><br><br>
-    <input type="email" id="sEmail" placeholder="Email"><br><br>
-    <input type="password" id="sPass" placeholder="Password"><br><br>
-    <button onclick="signupStudent()">Create Account</button>
-  </div>
-</div>
-
-
-<div id="adminSignup" class="modal">
-  <div class="modal-box">
-    <button onclick="closeAll()">✖</button>
-    <h3>Admin Sign Up</h3>
-    <input type="email" id="aEmail" placeholder="Email"><br><br>
-    <input type="password" id="aPass" placeholder="Password"><br><br>
-    <button onclick="signupAdmin()">Create Account</button>
-  </div>
 </div>
 
 <script src="homepage.js"></script>
