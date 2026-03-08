@@ -1,3 +1,5 @@
+// homepage.js
+
 const loginBtn = document.getElementById("loginBtn");
 const mainModal = document.getElementById("loginModal");
 
@@ -14,16 +16,22 @@ const msalConfig = {
 const msalInstance = new msal.PublicClientApplication(msalConfig);
 
 function loginStudent() {
+    // FIX: Save the role to localStorage BEFORE redirecting
+    localStorage.setItem("loginRole", "student");
+    
     msalInstance.loginRedirect({
         scopes: ["user.read"],
-        state: "student"  // send role through state
+        state: "student"
     });
 }
 
 function loginAdmin() {
+    // FIX: Save the role to localStorage BEFORE redirecting
+    localStorage.setItem("loginRole", "admin");
+    
     msalInstance.loginRedirect({
         scopes: ["user.read"],
-        state: "admin"    // send role through state
+        state: "admin"
     });
 }
 
