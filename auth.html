@@ -16,30 +16,64 @@ const msalConfig = {
         authority:"https://login.microsoftonline.com/common",
         redirectUri:"https://yukiiii231.github.io/SUPPORT-Q/auth.html"
     }
-};
+}
 
-const msalInstance = new msal.PublicClientApplication(msalConfig);
+const msalInstance = new msal.PublicClientApplication(msalConfig)
 
-msalInstance.handleRedirectPromise().then(response => {
+async function processLogin(){
+    try{
+        console.log("Starting auth process...");
+        
+        const response = await msalInstance.handleRedirectPromise()
+        let account
 
-    if(!response) return;
+        if(response){
+            console.log("Login response received.");
+            account = response.account
+        } else {
+            const accounts = msalInstance.getAllAccounts()
+            if(accounts.length > 0){
+                account = accounts[0]
+                console.log("Existing account found.");
+            }
+        }
 
-    const email = response.account.username.toLowerCase();
-    const role = localStorage.getItem("loginRole");
+        if(!account){
+            console.log("No account found. Redirecting to homepage.");
+            window.location.href = "homepage.html"
+            return
+        }
 
-    if(role === "student" && email.endsWith("@fairview.sti.edu.ph")){
-        window.location.href = "student_dashboard.html";
-        return;
+        const role = localStorage.getItem("loginRole")
+        const email = account.username.toLowerCase()
+        
+        console.log("Role from localStorage:", role);
+        console.log("User Email:", email);
+
+        // Check Role and Email Domain
+        if(role === "student" && email.endsWith("@fairview.sti.edu.ph")){
+            console.log("Redirecting to Student Dashboard");
+            window.location.href = "student_dashboard.html"
+            return
+        }
+
+        if(role === "admin" && email.endsWith("@fairview.sti.edu.ph")){
+            console.log("Redirecting to Admin Dashboard");
+            window.location.href = "admin_dashboard.html"
+            return
+        }
+
+        // If role doesn't match email domain
+        console.log("Role/Email mismatch. Redirecting to homepage.");
+        window.location.href = "homepage.html"
+
+    }catch(error){
+        console.error("Auth Error:", error)
+        window.location.href = "homepage.html"
     }
+}
 
-    if(role === "admin" && email.endsWith("@fairview.sti.edu.ph")){
-        window.location.href = "admin_dashboard.html";
-        return;
-    }
-
-    window.location.href = "homepage.html";
-
-});
+processLogin()
 
 </script>
 
