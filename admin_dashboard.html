@@ -14,5 +14,13 @@ if(role !== "admin"){
 }
 </script>
 <h1>Admin Dashboard</h1>
+<button onclick="logout()">Log Out</button>
+
+<script>
+function logout() {
+    localStorage.removeItem("loginRole");
+    window.location.href = "homepage.html";
+}
+</script>
 </body>
 </html>
