@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard</title>
 </head>
 <body>
-    <script>
-    const role = sessionStorage.getItem("userRole");
-    if (role !== "student") {
-        alert("Access Denied! Please login as a student.");
-        window.location.replace = "homepage.html";
-    }
+<script>
+const role = localStorage.getItem("loginRole");
+if(role !== "student"){
+    alert("Access Denied. Please login as student.");
+    window.location.href = "homepage.html";
+}
 </script>
+<h1>Student Dashboard</h1>
 </body>
 </html>
