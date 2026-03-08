@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Auth</title>
+<script src="https://alcdn.msauth.net/browser/2.35.0/js/msal-browser.min.js"></script>
+</head>
+
+<body>
+
+<script>
+
+const msalConfig = {
+    auth:{
+        clientId:"8301da4c-08bd-4aed-bcce-67a766ba3367",
+        authority:"https://login.microsoftonline.com/common",
+        redirectUri:"https://yukiiii231.github.io/SUPPORT-Q/auth.html"
+    }
+};
+
+const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+msalInstance.handleRedirectPromise().then(response => {
+
+    if(!response) return;
+
+    const email = response.account.username.toLowerCase();
+    const role = localStorage.getItem("loginRole");
+
+    if(role === "student" && email.endsWith("@fairview.sti.edu.ph")){
+        window.location.href = "student_dashboard.html";
+        return;
+    }
+
+    if(role === "admin" && email.endsWith("@fairview.sti.edu.ph")){
+        window.location.href = "admin_dashboard.html";
+        return;
+    }
+
+    window.location.href = "homepage.html";
+
+});
+
+</script>
+
+</body>
+</html>
