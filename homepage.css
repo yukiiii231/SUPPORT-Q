@@ -1,0 +1,298 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#ffffff;
+}
+
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-left:0;
+    
+}
+
+.logo-text{
+    color:#000000;
+    font-size:18px;
+    margin-left: 25px;
+}
+
+.login-btn{
+    background:#5ba6b0;
+    color:white;
+    padding:8px 18px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    margin-right: 0px;
+}
+
+.image-slideshow {
+  background-attachment: fixed;
+  position: absolute;
+  width: 100%;
+  height: 400px; 
+  background-size: cover;
+  background-position: center;
+  /* Base Image */
+  background-image: url('https://media-public.canva.com/Ffpm0/MAGzxjFfpm0/1/s2.jpg'); 
+  overflow: hidden;
+}
+
+.image-slideshow::after {
+  background-attachment: fixed;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  
+  animation: slideCycle 15s infinite;
+  opacity: 0;
+}
+
+@keyframes slideCycle {
+  /* Image 2  */
+  0%   { opacity: 0; background-image: url('https://plus.unsplash.com/premium_photo-1682148383444-19e334062543?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHN5Y2hpYXRyaXN0fGVufDB8fDB8fHww'); }
+  20%  { opacity: 1; background-image: url('https://plus.unsplash.com/premium_photo-1682148383444-19e334062543?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHN5Y2hpYXRyaXN0fGVufDB8fDB8fHww'); }
+  33%  { opacity: 1; background-image: url('https://plus.unsplash.com/premium_photo-1682148383444-19e334062543?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHN5Y2hpYXRyaXN0fGVufDB8fDB8fHww'); }
+
+  /* Image 3 */
+  34%  { opacity: 0; background-image: url('https://plus.unsplash.com/premium_photo-1665990294519-7f1b5b8bcfc2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHBzeWNoaWF0cmlzdHxlbnwwfHwwfHx8MA%3D%3D'); }
+  54%  { opacity: 1; background-image: url('https://plus.unsplash.com/premium_photo-1665990294519-7f1b5b8bcfc2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHBzeWNoaWF0cmlzdHxlbnwwfHwwfHx8MA%3D%3D'); }
+  66%  { opacity: 1; background-image: url('https://plus.unsplash.com/premium_photo-1665990294519-7f1b5b8bcfc2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHBzeWNoaWF0cmlzdHxlbnwwfHwwfHx8MA%3D%3D'); }
+
+  /* Image 1(back to base) */
+  67%  { opacity: 0; background-image: url('https://media-public.canva.com/Ffpm0/MAGzxjFfpm0/1/s2.jpg'); }
+  87%  { opacity: 1; background-image: url('https://media-public.canva.com/Ffpm0/MAGzxjFfpm0/1/s2.jpg'); }
+  100% { opacity: 1; background-image: url('https://media-public.canva.com/Ffpm0/MAGzxjFfpm0/1/s2.jpg'); }
+}
+
+.backgroundimage{
+    height:400px;
+    width: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;    
+     box-shadow: 8px 8px 15px rgba(0.5, 0, 0, 0.5);
+    position:relative;
+}
+
+
+.backgroundimage::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.45);
+    top:0;
+    left:0;
+}
+
+.backgroundimage-content{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+}
+
+.backgroundimage h1{
+    font-size:28px;
+    margin-bottom:10px;
+    background-image: linear-gradient(to left, yellow, orange);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.backgroundimage p{
+    font-size:14px;
+}
+
+
+
+.about{
+padding:60px 20px;
+background:url("https://media.canva.com/v2/files/uri:ifs%3A%2F%2FM%2Fd435830d-752a-4fe3-a3c5-1389bed9dd4d?csig=AAAAAAAAAAAAAAAAAAAAAMppX1zAi-qAWpLmRTrm5_ASPqN5nOG1Yc5OaxFosTlg&exp=1772643502&signer=media-rpc&token=AAIAAU0AJGQ0MzU4MzBkLTc1MmEtNGZlMy1hM2M1LTEzODliZWQ5ZGQ0ZAAAAAABnLnJR7BGRSKOoV18miNtmw2-wadGBqjWB-NN0coJGTgkdPXqyQ");
+min-height:500px;
+text-align:left;
+}
+
+.about h2{
+    color:#1f6f8b;
+    margin-bottom:10px;
+}
+
+.about p{
+    color:#444;
+    text-align: left;
+}
+
+.contact {
+
+    background-image:
+     url("number.png"),
+     url("email.png"),
+     url("facebook.png");
+    background-position:
+     7% 26%, 7% 48%, 7% 68%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding-left: 80px;
+    background-color: #5ba6b0;
+    justify-content: flex-end;
+    height: 200px;
+}
+
+.contact h2 {
+    color: yellow;
+    padding-top: 10px;
+    padding-left: 50px;
+
+}
+
+.number {
+    color: white;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.facebook {
+    color: white;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.email {
+    color: white;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:10000000;
+}
+
+.modal-box{
+    background:white;
+    width:100%;
+    max-width:360px;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    position:relative;
+}
+
+
+.close-btn{
+    text-align: right;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border:none;
+    background:none;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.student-btn,
+.admin-btn{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.buttonloginstudent{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:20px;
+    background:#5ba6b0;
+    color:white;
+    cursor:pointer;
+}
+
+.buttonloginadmin{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:20px;
+    background:#f4c542;
+    color:white;
+    cursor:pointer;
+}
+
+.student-btn{
+    background:#5ba6b0;
+    color:white;
+}
+
+.admin-btn{
+    background:#f4c542;
+    color:black;
+}
+
+.signup-text{
+    font-size:12px;
+    margin-top:10px;
+}
+
+.modal-box1 input{
+    width:100%;
+    padding:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.modal-box1 button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:20px;
+    background:#5ba6b0;
+    color:white;
+    cursor:pointer;
+}
+
+.link{
+    font-size:12px;
+    color:blue;
+    cursor:pointer;
+    margin-top:10px;
+}
